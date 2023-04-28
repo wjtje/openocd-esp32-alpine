@@ -1,0 +1,14 @@
+Author: Wouter van der Wal <me@wjtje.dev>
+Summary: Fixes posible unsigned
+----
+--- a/src/target/xtensa/xtensa.c.orig	2023-04-28 16:15:15.253523116 +0200
++++ b/src/target/xtensa/xtensa.c	2023-04-28 16:15:27.694477993 +0200
+@@ -607,7 +607,7 @@
+ 	xtensa_reg_val_t a3 = 0;
+ 	unsigned int ms_idx = (xtensa->core_config->core_type == XT_NX) ?
+ 		xtensa->nx_reg_idx[XT_NX_REG_IDX_MS] : reg_list_size;
+-	xtensa_reg_val_t ms;
++	xtensa_reg_val_t ms = 0;
+ 	bool restore_ms = false;
+ 
+ 	LOG_TARGET_DEBUG(target, "start");
